@@ -23,12 +23,17 @@
 	#logoContainer {
     	position: fixed;
     	z-index: 100;
-    	bottom: 10px;
-    	left: 10px;
+    	bottom: 15px;
+    	left: 15px;
     	background-color: white;
     	border: 1px solid black;
     	width: 450px;
-    	height: 150px;
+    	height: 128px;
+	font-size: 12px; 
+	line-height: 1.5;
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-weight: normal;
+
 	}
 	</style>
 </head>
@@ -39,11 +44,8 @@
 
 	<div id="logoContainer">
 		<img src='https://amphibiaweb.org/images/Amphibiaweb_logo_art.png' width=80 height=80 align=left hspace=10 vspace=5>
-	    <b>SpeciesLookup</b> is a free species query service from the Museum of Vertebrate Zoology. 
-	    Click on the map to view a list of amphibian species at that location.  
-	    The codebase was developed by Chenyu Shi, an undergraduate UC Berkeley
+	    <b>SpeciesLookup</b> is a species query service returning a list of amphibian species whose ranges intersect at a location. Code was developed by Chenyu Shi, Undergraduate, Museum of Vertebrate Zoology, UC Berkeley.  
 	    <p>You can call the query service yourself with:
-	    <br>&nbsp;https://specieslookup.berkeley.edu/search/[longitude,latitude]
 	    <br>&nbsp;https://specieslookup.berkeley.edu/search_json/[longitude,latitude]
 	</div>
 
@@ -129,6 +131,7 @@
 
 		    $.getJSON(queryURL, function (data) {
 			var htmlText = 'Species Lookup Results:'
+			var foundSpecies = false;
 			$.each(data.species, function (key, val) {
 			    htmlText =
 				htmlText +
@@ -137,10 +140,14 @@
 				'" target=_blank>' +
 				val.scientific_name +
 				'</a></li>';
+			    foundSpecies = true;
 			})
 
 			// Update the marker text
-			infoMarker.bindPopup(htmlText)
+			if (foundSpecies)
+				infoMarker.bindPopup(htmlText)
+			else 
+				infoMarker.bindPopup("No species found at this location!")
 			//infoMarker.updatePopup()
 		    })
 		}
