@@ -6,10 +6,9 @@ from os.path import isfile, join
 import pickle
 
 if __name__ == '__main__':
-    os.chdir("/home/chenyu_shi/SpeciesLookup")
 
     # grabbing all the species names from kmz
-    onlyfiles = [f for f in listdir("range_shapefiles") if isfile(join("range_shapefiles", f))]
+    onlyfiles = [f for f in listdir("/nfs/range_shapefiles") if isfile(join("range_shapefiles", f))]
     all_species = [name.split(",")[0] for name in onlyfiles if name]
     grid_cells = table.create_table()
     file_Name = "gridtable"
