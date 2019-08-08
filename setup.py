@@ -6,7 +6,6 @@ from os.path import isfile, join
 import pickle
 
 if __name__ == '__main__':
-    os.chdir("/Users/jdeck/IdeaProjects/SpeciesLookup")
 
     # grabbing all the species names from kmz
     onlyfiles = [f for f in listdir("/nfs/range_shapefiles") if isfile(join("range_shapefiles", f))]
