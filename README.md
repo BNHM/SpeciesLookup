@@ -17,5 +17,7 @@ webapi.py puts everything together into a web service
 ### Note on KMZ
 These are for testing purposes only; in production we will use the AmphibiaWeb live directory for ranges which is updated regularly.
 
-## Updates
+## Updates & NOTES
 Apache server and Python 3 need to installed on the server
+Need a symbolic link setup to range_shapefiles as file in root directory to where range_shapefiles live on local server
+
